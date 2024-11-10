@@ -1,0 +1,72 @@
+xml code
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+java code
+
+
+package com.mad.labprogram3graphics;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Bundle;
+import android.widget.ImageView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Create a Bitmap and a Canvas for drawing
+        Bitmap bg = Bitmap.createBitmap(720, 1280, Bitmap.Config.ARGB_8888);
+        ImageView i = findViewById(R.id.imageView);
+
+        // Set the Bitmap directly as the image source of ImageView
+        i.setImageBitmap(bg);
+
+        // Create a Canvas object and Paint object
+        Canvas canvas = new Canvas(bg);
+        Paint paint = new Paint();
+        
+        // Set paint properties for drawing text and shapes
+        paint.setColor(Color.BLUE);
+        paint.setTextSize(50);
+
+        // Draw shapes and labels on the canvas
+        canvas.drawText("Rectangle", 500, 150, paint);
+        canvas.drawRect(400, 200, 700, 400, paint);
+
+        canvas.drawText("Circle", 120, 150, paint);
+        canvas.drawCircle(200, 300, 100, paint);
+
+        canvas.drawText("Square", 120, 800, paint);
+        canvas.drawRect(50, 850, 350, 1150, paint);
+
+        canvas.drawText("Line", 480, 800, paint);
+        canvas.drawLine(520, 850, 520, 1150, paint);
+    }
+}
